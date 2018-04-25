@@ -5,6 +5,7 @@ import java.util.List;
 
 public class SongData {
 
+    public String id;
     public String name;
     public String artistName;
     public String artworkUrl100;
@@ -12,6 +13,7 @@ public class SongData {
     public List<GenreData> genres;
 
     public SongData() {
+        id = "";
         name = "";
         artistName = "";
         artworkUrl100 = "";

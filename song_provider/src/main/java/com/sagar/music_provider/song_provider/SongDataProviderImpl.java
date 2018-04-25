@@ -4,7 +4,7 @@ import com.sagar.music_provider.Constants;
 import com.sagar.music_provider.NetworkBoundSource;
 import com.sagar.music_provider.Response;
 import com.sagar.music_provider.cache.SongCache;
-import com.sagar.music_provider.rest.SongsApi;
+import com.sagar.music_provider.rest.SongApi;
 import com.sagar.music_provider.rest.response.SongData;
 import com.sagar.music_provider.rest.response.SongsResponse;
 import com.sagar.music_provider.rest.response.SongsResponseData;
@@ -20,13 +20,13 @@ import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
 
-public class SongsDataProviderImpl implements SongsDataProvider {
+public class SongDataProviderImpl implements SongDataProvider {
 
-    private SongsApi songsApi;
+    private SongApi songApi;
     private SongCache songCache;
 
-    public SongsDataProviderImpl(SongsApi songsApi, SongCache songCache) {
-        this.songsApi = songsApi;
+    public SongDataProviderImpl(SongApi songApi, SongCache songCache) {
+        this.songApi = songApi;
         this.songCache = songCache;
     }
 
@@ -43,7 +43,7 @@ public class SongsDataProviderImpl implements SongsDataProvider {
                 new NetworkBoundSource<List<Song>, SongsResponse>(emitter) {
                     @Override
                     public Single<SongsResponse> getRemote() {
-                        return songsApi.getTopMusicListing(
+                        return songApi.getTopMusicListing(
                                 songRequest.getCountryCode(),
                                 songRequest.getLimit() <= 0 ? Constants.TOP_SONG_LIST_LIMIT : songRequest.getLimit()
                         );

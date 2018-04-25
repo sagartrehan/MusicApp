@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
-public interface SongsDataProvider {
+public interface SongDataProvider {
 
     Flowable<Response<List<Song>>> fetchSongs(SongRequest songRequest);
 

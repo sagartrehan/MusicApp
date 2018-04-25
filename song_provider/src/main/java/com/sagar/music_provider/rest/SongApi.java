@@ -6,7 +6,7 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface SongsApi {
+public interface SongApi {
 
     String FETCH_TOP_MUSIC = "api/v1/{countryCode}/apple-music/top-songs/all/{limit}/explicit.json";
 

@@ -26,7 +26,15 @@ dependencies {
 
     // Support library
     implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.androidSupportLibVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.androidSupportLibVersion"
 
     // Constraint Layout
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constrainLayoutVersion"
+
+    // Fresco Image Loading
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+
+    // Song Provider library
+    api project(path: ':song_provider')
 }

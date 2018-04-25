@@ -2,6 +2,7 @@ package com.sagar.music_provider.song_provider;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import com.sagar.music_provider.rest.response.GenreData;
@@ -13,6 +14,11 @@ import java.util.List;
 
 @Entity(tableName = "songs_list")
 public class Song {
+
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo(name  = "id")
+    private String id;
 
     @NonNull
     @ColumnInfo(name = "name")
@@ -73,6 +79,15 @@ public class Song {
         this.genres = genres;
     }
 
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
     public static Song from(SongData songData) {
         List<String> genres = new ArrayList<>();
         for (GenreData genreData : songData.genres) {
@@ -80,6 +95,7 @@ public class Song {
         }
 
         Song song = new Song();
+        song.id = songData.id;
         song.name = songData.name;
         song.artistName = songData.artistName;
         song.thumbnail = songData.artworkUrl100;

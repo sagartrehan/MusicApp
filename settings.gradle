@@ -1,1 +1,1 @@
-include ':app', ':music_provider'
+include ':app', ':song_provider'

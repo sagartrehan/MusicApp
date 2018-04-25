@@ -37,9 +37,13 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 
+    // Rx Android/Java
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+
     // Facebook Stetho interceptor
-    implementation "com.facebook.stetho:stetho:$rootProject.stethoVersion"
-    implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.stethoVersion"
+    api "com.facebook.stetho:stetho:$rootProject.stethoVersion"
+    api "com.facebook.stetho:stetho-okhttp3:$rootProject.stethoVersion"
 
     // Room for database
     api "android.arch.persistence.room:runtime:$rootProject.roomDb"
