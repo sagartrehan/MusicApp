@@ -1,0 +1,70 @@
+package com.sagar.music_provider;
+
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
+public abstract class NetworkBoundSource<LocalType, RemoteType> {
+
+    protected NetworkBoundSource(final FlowableEmitter<Response<LocalType>> emitter) {
+        final Disposable firstDataDisposable = getLocal()
+                .map(new Function<LocalType, Response<LocalType>>() {
+                    @Override
+                    public Response<LocalType> apply(LocalType localType) throws Exception {
+                        return new Response<>(Constants.ResponseSource.LOCAL, localType, true);
+                    }
+                })
+                .subscribe(new Consumer<Response<LocalType>>() {
+                    @Override
+                    public void accept(Response<LocalType> localTypeResponse) throws Exception {
+                        emitter.onNext(localTypeResponse);
+                    }
+                });
+
+        getRemote().map(mapper())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<LocalType>() {
+                    @Override
+                    public void accept(LocalType localType) throws Exception {
+                        firstDataDisposable.dispose();
+                        saveCallResult(localType);
+                        getLocal()
+                                .map(new Function<LocalType, Response<LocalType>>() {
+                                    @Override
+                                    public Response<LocalType> apply(LocalType localType) throws Exception {
+                                        return new Response<>(Constants.ResponseSource.LOCAL, localType, false);
+                                    }
+                                })
+                                .subscribe(new Consumer<Response<LocalType>>() {
+                                    @Override
+                                    public void accept(Response<LocalType> localTypeResponse) throws Exception {
+                                        emitter.onNext(localTypeResponse);
+                                    }
+                                });
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                        emitter.onNext(new Response<LocalType>(
+                                Constants.ErrorType.RETROFIT,
+                                Constants.ResponseSource.REMOTE,
+                                false,
+                                throwable));
+                    }
+                });
+    }
+
+    public abstract Single<RemoteType> getRemote();
+
+    public abstract Flowable<LocalType> getLocal();
+
+    public abstract void saveCallResult(LocalType data);
+
+    public abstract Function<RemoteType, LocalType> mapper();
+
+}

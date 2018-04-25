@@ -40,4 +40,9 @@ dependencies {
     // Facebook Stetho interceptor
     implementation "com.facebook.stetho:stetho:$rootProject.stethoVersion"
     implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.stethoVersion"
+
+    // Room for database
+    api "android.arch.persistence.room:runtime:$rootProject.roomDb"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDb"
+    api "android.arch.persistence.room:rxjava2:$rootProject.roomDb"
 }

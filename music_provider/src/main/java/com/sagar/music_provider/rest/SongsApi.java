@@ -13,7 +13,7 @@ public interface SongsApi {
     @GET(FETCH_TOP_MUSIC)
     Single<SongsResponse> getTopMusicListing(
             @Path("countryCode") String countryCode,
-            @Path("limit") String limit
+            @Path("limit") int limit
     );
 
 }
