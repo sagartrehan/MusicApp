@@ -56,6 +56,7 @@ public class SongDataProviderImpl implements SongDataProvider {
 
                     @Override
                     public void saveCallResult(List<Song> songList) {
+                        songCache.deleteAllSongs();
                         songCache.saveSongs(songList);
                     }
 

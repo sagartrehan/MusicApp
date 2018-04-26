@@ -20,4 +20,6 @@ public interface SongCache {
     @Query("SELECT * FROM songs_list")
     Flowable<List<Song>> getSongs();
 
+    @Query("DELETE from songs_list")
+    void deleteAllSongs();
 }

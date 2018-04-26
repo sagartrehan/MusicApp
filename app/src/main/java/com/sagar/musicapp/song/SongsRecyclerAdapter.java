@@ -1,4 +1,4 @@
-package com.sagar.musicapp;
+package com.sagar.musicapp.song;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sagar.music_provider.song_provider.Song;
+import com.sagar.musicapp.R;
 
 import java.util.List;
 
