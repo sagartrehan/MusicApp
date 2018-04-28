@@ -16,6 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -23,6 +28,14 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junit"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso"
+    testImplementation "org.powermock:powermock-module-junit4:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-api-mockito:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-classloading-xstream:$rootProject.powerMockito"
+    testImplementation ("android.arch.core:core-testing:1.1.0") {
+        exclude group: 'org.mockito', module:'mockito-core'
+    }
+    testImplementation "org.robolectric:robolectric:3.8"
 
     // Support library
     implementation "com.android.support:appcompat-v7:$rootProject.androidSupportLibVersion"

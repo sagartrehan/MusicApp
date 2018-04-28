@@ -27,6 +27,10 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junit"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso"
+    testImplementation "org.powermock:powermock-module-junit4:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-api-mockito:$rootProject.powerMockito"
+    testImplementation "org.powermock:powermock-classloading-xstream:$rootProject.powerMockito"
 
     // Retrofit
     api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"

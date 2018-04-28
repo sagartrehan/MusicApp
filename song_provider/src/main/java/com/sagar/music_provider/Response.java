@@ -8,15 +8,17 @@ public class Response<DATA> {
     private DATA data;
     private boolean isLoading;
 
-    Response(String errorType, String responseSource, boolean isLoading, Throwable throwable) {
+    public Response(String errorType, String responseSource, boolean isLoading, Throwable throwable) {
         this.errorType = errorType;
         this.responseSource = responseSource;
         this.throwable = throwable;
+        this.isLoading = false;
     }
 
-    Response(String responseSource, DATA data, boolean isLoading) {
+    public Response(String responseSource, DATA data, boolean isLoading) {
         this.responseSource = responseSource;
         this.data = data;
+        this.isLoading = false;
     }
 
     public boolean isError() {

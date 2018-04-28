@@ -3,6 +3,7 @@ package com.sagar.musicapp.song;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,12 @@ class SongsRecyclerAdapter extends RecyclerView.Adapter<SongsRecyclerAdapter.Son
         Song song = songList.get(position);
         holder.songIconView.setImageURI(Uri.parse(song.getThumbnail()));
         holder.songNameView.setText(song.getName());
+        int color = ContextCompat.getColor(
+                context,
+                position % 2 == 0 ? R.color.colorEvenRow : R.color.colorOddRow
+        );
         holder.artistNameView.setText(song.getArtistName());
+        holder.itemView.setBackgroundColor(color);
     }
 
     @Override
